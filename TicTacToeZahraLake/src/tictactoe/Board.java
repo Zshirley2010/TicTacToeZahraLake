@@ -44,15 +44,16 @@ public class Board
     		while(scanner.hasNextLine())
     		{
     			String line = scanner.nextLine().trim();
-    			if(!line.matches("[EXO], [EXO], [EXO]"));
+    			if(!line.matches("[EXO], [EXO], [EXO]"))
     			{
     				scanner.close();
     				return false; 
     			}
     			
+    			//count X and O 
     			if(line.charAt(4) == 'X') xCount++;
-    			
-    			
+    			if(line.charAt(2) == 'X') xCount++;
+    			if(line.charAt(0) == 'X') xCount++;
     				
     		}
     		scanner.close(); 
