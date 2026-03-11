@@ -40,6 +40,7 @@ public class Board
     	{
     		File file = new File("src/tictactoe/" + this.filename);
     		Scanner scanner = new Scanner(file); 
+    		int xCount = 0, oCount = 0; 
     		while(scanner.hasNextLine())
     		{
     			String line = scanner.nextLine().trim();
@@ -48,15 +49,21 @@ public class Board
     				scanner.close();
     				return false; 
     			}
+    			
+    			if(line.charAt(4) == 'X') xCount++;
+    			
+    			
+    				
     		}
-    		
     		scanner.close(); 
-    		return true; 
+			return xCount == oCount || xCount == oCount + 1; 
+    		
     		
     	}
     	catch(Exception error)
     	{
     		error.printStackTrace();
+    		return false; 
     	}
     	
     
