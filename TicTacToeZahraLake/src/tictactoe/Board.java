@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Board 
 {
 	//holds game play data in an instance variable
-    private char[][] grid;
+    private int[][] grid;
     
     //holds game play data in a CSV file
     private String filename;
@@ -16,7 +16,19 @@ public class Board
     //non-default constructor - [5 points]
     public Board(String filename)
     {
+    	
+    	
     	 //set the file name
+    	this.filename = filename; 
+    	if(Board.isValidBoardFile(filename)) 
+    	{
+    		grid = new int[3][3]; 
+    		loadBoardFromFile();
+    	}
+   
+    		
+    		
+    	
        //if the board is valid then create the 3x3 grid
        //and load the board from the file
     }
@@ -54,6 +66,10 @@ public class Board
     			if(line.charAt(4) == 'X') xCount++;
     			if(line.charAt(2) == 'X') xCount++;
     			if(line.charAt(0) == 'X') xCount++;
+    			if(line.charAt(4) == 'O') oCount++;
+    			if(line.charAt(4) == 'O') oCount++;
+    			if(line.charAt(4) == 'O') oCount++;
+
     				
     		}
     		scanner.close(); 
