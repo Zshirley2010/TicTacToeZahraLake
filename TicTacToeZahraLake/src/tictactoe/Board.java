@@ -25,10 +25,9 @@ public class Board
     		grid = new int[3][3]; 
     		loadBoardFromFile();
     	}
+    	 
    
-    		
-    		
-    	
+ 	
        //if the board is valid then create the 3x3 grid
        //and load the board from the file
     }
