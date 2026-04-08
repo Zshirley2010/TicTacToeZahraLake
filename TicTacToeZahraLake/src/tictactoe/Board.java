@@ -166,7 +166,7 @@ public class Board
     
     public char getCell(int row, int col)
     {
-    	return grid[row][col];     	
+    	return grid;     	
     }
     
 	public void setCell(int row, int col)
@@ -177,7 +177,7 @@ public class Board
     
     public char[][] getGrid()
     {
-    	return grid[row][col]; 
+    	return grid; 
     	
     }
  
@@ -185,6 +185,7 @@ public class Board
     public void setGrid(int[][] grid) 
     {
 		this.grid = grid;
+		this.saveBoardToFile();
 	}
 
 	
