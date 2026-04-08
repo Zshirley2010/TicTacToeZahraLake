@@ -164,6 +164,12 @@ public class Board
     
     }
     
+    public char getCell(int row, int col)
+    {
+    	return grid[row][col];     	
+    }
+    
+ 
     public static void main(String args[])
     {
     	Board b = new Board("board.csv");
