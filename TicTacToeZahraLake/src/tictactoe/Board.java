@@ -169,7 +169,7 @@ public class Board
     	return grid[row][col];     	
     }
     
-    public void setCell(int row, int col)
+	public void setCell(int row, int col)
     {
     	this.grid[row][col] = grid; 
     	this.saveBoardToFile(); 
@@ -181,6 +181,14 @@ public class Board
     	
     }
  
+    
+    public void setGrid(int[][] grid) 
+    {
+		this.grid = grid;
+	}
+
+	
+   
     public static void main(String args[])
     {
     	Board b = new Board("board.csv");
