@@ -169,6 +169,17 @@ public class Board
     	return grid[row][col];     	
     }
     
+    public void setCell(int row, int col)
+    {
+    	this.grid[row][col] = grid; 
+    	this.saveBoardToFile(); 
+    }
+    
+    public char[][] getGrid()
+    {
+    	return grid[row][col]; 
+    	
+    }
  
     public static void main(String args[])
     {
