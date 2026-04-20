@@ -3,6 +3,8 @@ package tictactoe;
 public class GameLogic 
 {
 
+	private Object setCell;
+
 	public boolean checkWin(Board board, char player)
 	{
 		
@@ -76,7 +78,46 @@ public class GameLogic
 		else
 			return false; 
 	}
+	
+	public char getCurrentPlayer(Board board)
+	{
+		int xCount = 0, oCount = 0; 
+		for(int row = 0; row < 3; row++)
+		{
+
+			for(int col = 0; col < 3; col++)
+				{
+				
+					
+					if(board.getCell(row, col) == 'X')
+						xCount++;
+					
+					else
+					oCount++;					
+				
+				}	
+		}
 		
+		if(xCount > oCount)
+			return 'O'; 
+		
+		else
+			return 'X'; 
+					
+	}
+	
+	public boolean makeMove(Board board, int row, int col)
+	{
+
+		char player = getCurrentPlayer(board); 
+				
+		if(board.isValidBoardFile() && row>= 0 && row <= 2 && getCell == 'E') 
+		{
+		    	this.setCell
+		    }
+		}
+	}
+	
 	    public static void main(String args[])
 	    {
 	    	
