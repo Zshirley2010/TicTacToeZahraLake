@@ -21,48 +21,96 @@ public class Main {
     private static final String RESET = "\u001B[0m";
     private static final String BLUE = "\u001B[94m";
     private static final String RED = "\u001B[91m";
-    private static final String CYAN = "\u001B[96m";
+    private static final String GREEN = "\u001B[92m";
 
     public static void main(String[] args) {
+        startUiWelcome();
+    }
+
+    private static void startUiWelcome() {
+        JFrame frame = new JFrame("Tic-Tac-Toe");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout(10, 10));
+
+        JPanel root = new JPanel(new BorderLayout(10, 10));
+        root.setBorder(BorderFactory.createEmptyBorder(24, 24, 24, 24));
+        root.setBackground(Color.WHITE);
+
+        JLabel welcome = new JLabel(
+                "<html><div style='text-align:center;'>Welcome to Tic-Tac-Toe.<br>Please put enter your name.</div></html>",
+                SwingConstants.CENTER);
+        welcome.setFont(new Font("Comic Sans MS", Font.BOLD, 28));
+        welcome.setForeground(new Color(0, 150, 0));
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setBackground(Color.WHITE);
+        centerPanel.setLayout(new GridLayout(2, 1, 8, 8));
+
+        JLabel nameLabel = new JLabel("Name:", SwingConstants.CENTER);
+        nameLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        nameLabel.setForeground(Color.BLACK);
+
+        javax.swing.JTextField nameField = new javax.swing.JTextField();
+        nameField.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+        nameField.setForeground(Color.BLACK);
+        nameField.setHorizontalAlignment(SwingConstants.CENTER);
+        nameField.setPreferredSize(new Dimension(320, 40));
+
+        centerPanel.add(nameLabel);
+        centerPanel.add(nameField);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(Color.WHITE);
+        JButton startConsole = new JButton("Start Console");
+        JButton startUiGame = new JButton("Start UI");
+        buttonPanel.add(startConsole);
+        buttonPanel.add(startUiGame);
+
+        startConsole.addActionListener(e -> {
+            String name = nameField.getText().trim();
+            if (name.isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "Please enter your name first.");
+                return;
+            }
+            frame.dispose();
+            startConsoleMode(name);
+        });
+
+        startUiGame.addActionListener(e -> {
+            String name = nameField.getText().trim();
+            if (name.isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "Please enter your name first.");
+                return;
+            }
+            frame.dispose();
+            startUiMode(name);
+        });
+
+        root.add(welcome, BorderLayout.NORTH);
+        root.add(centerPanel, BorderLayout.CENTER);
+        root.add(buttonPanel, BorderLayout.SOUTH);
+
+        frame.add(root);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    private static void startConsoleMode(String playerName) {
         Scanner in = new Scanner(System.in);
-
         printWelcomeBanner();
-
-        System.out.print("Enter Player X name: ");
-        String playerX = in.nextLine().trim();
-        if (playerX.isEmpty()) {
-            playerX = "Player X";
-        }
-
-        System.out.print("Enter Player O name: ");
-        String playerO = in.nextLine().trim();
-        if (playerO.isEmpty()) {
-            playerO = "Player O";
-        }
-
-        System.out.println();
-        System.out.println("Choose mode:");
-        System.out.println("1) Console");
-        System.out.println("2) UI");
-        System.out.print("Enter 1 or 2: ");
-
-        String choice = in.nextLine().trim();
-        if ("2".equals(choice)) {
-            String finalPlayerX = playerX;
-            String finalPlayerO = playerO;
-            SwingUtilities.invokeLater(() -> startUiMode(finalPlayerX, finalPlayerO));
-        } else {
-            startConsoleMode(in, playerX, playerO);
-        }
+        System.out.println("Hi, " + playerName + "! Let's play Tic-Tac-Toe.");
+        String opponent = "Computer";
+        startConsoleGameLoop(in, playerName, opponent);
     }
 
     private static void printWelcomeBanner() {
-        System.out.println(CYAN + "==============================================");
-        System.out.println("  W E L C O M E   T O   T I C - T A C - T O E ");
-        System.out.println("==============================================" + RESET);
+        System.out.println(GREEN + "============================================================");
+        System.out.println(" Welcome to Tic-Tac-Toe. Please put enter your name.");
+        System.out.println("============================================================" + RESET);
     }
 
-    private static void startConsoleMode(Scanner in, String playerX, String playerO) {
+    private static void startConsoleGameLoop(Scanner in, String playerX, String playerO) {
         boolean playAgain = true;
         while (playAgain) {
             char[][] board = new char[3][3];
@@ -177,7 +225,10 @@ public class Main {
         return true;
     }
 
-    private static void startUiMode(String playerX, String playerO) {
+    private static void startUiMode(String playerName) {
+        String playerX = playerName;
+        String playerO = "Computer";
+
         JFrame frame = new JFrame("Tic Tac Toe");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout(12, 12));
