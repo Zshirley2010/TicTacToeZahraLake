@@ -104,20 +104,21 @@ public class GameLogic
 		else
 			return 'X'; 
 					
-	}
-	
-	public boolean makeMove(Board board, int row, int col)
-	{
 
-		char player = getCurrentPlayer(board); 
-				
-		if(board.isValidBoardFile() && row>= 0 && row <= 2 && getCell == 'E') 
-		{
-		    	this.setCell
-		    }
-		}
+
+		
+		public boolean makeMove(Board board, int row, int col)
+	{
+			char player = getCurrentPlayer(board); 
+			if(board.isValidBoardFile() && row>= 0 && row <= 2 && getCell(row, col) == 'E') 
+			{
+				this.setCell(row,col,player)
+			}
 	}
-	
+		
+
+			
+			
 	    public static void main(String args[])
 	    {
 	    	
